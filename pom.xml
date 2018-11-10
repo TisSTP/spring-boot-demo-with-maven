@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.example</groupId>
+	<artifactId>demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>demo</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.0.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!-- Version -->
+		<java.version>1.8</java.version>
+    <spring.boot.version>2.1.0.RELEASE</spring.boot.version>
+    <flyway.version>5.2.1</flyway.version>
+	</properties>
+
+	<dependencies>
+
+    <!-- Dependency Scope Refer: https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html -->
+    <!-- [Scope] compile : This is the default scope -->
+    <!-- [Scope] provided:  -->
+    <!-- [Scope] runtime :  -->
+    <!-- [Scope] test    :  -->
+    <!-- [Scope] system  :  -->
+    <!-- [Scope] import  :  -->
+
+    <!-- Spring Boot: Web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+      <version>${spring.boot.version}</version>
+		</dependency>
+
+    <!-- Spring Boot: Data JPA, Hibernate -->
+    <!-- Link Config Property: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-sql.html -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <version>${spring.boot.version}</version>
+    </dependency>
+
+    <!-- Spring Boot: Dev Tools -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <version>${spring.boot.version}</version>
+    </dependency>
+
+    <!-- Database: H2 -->
+    <!-- Link App: http://localhost:8080/h2-console -->
+    <!-- JDBC URL: jdbc:h2:mem:testdb -->
+    <!-- USERNAME: sa -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- Tools: Migration Data Version (Flyway) -->
+    <!-- source: src/main/resources/db/migration -->
+    <!-- version: V{1.0.0}__{name} -->
+    <!-- Run Migrate: when run project -->
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>${flyway.version}</version>
+    </dependency>
+
+    <!-- Spring Boot: TEST -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+      <version>${spring.boot.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+      <!-- Spring Boot: Maven Plugin -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring.boot.version}</version>
+			</plugin>
+
+      <!-- Tools: Migration Data Version (Flyway) -->
+      <!-- Source: https://flywaydb.org/getstarted/firststeps/maven -->
+      <!-- Run Migrate: mvn flyway:migrate -->
+      <!--<plugin>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-maven-plugin</artifactId>
+        <version>${flyway.version}</version>
+        <configuration>
+          <url>jdbc:h2:file:./target/testdb</url>
+          <user>sa</user>
+        </configuration>
+      </plugin>-->
+
+
+		</plugins>
+	</build>
+
+
+</project>
