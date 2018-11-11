@@ -72,6 +72,11 @@ public class GithubClient {
 
   }
 
+
+  /**
+   * $ http https://api.github.com/users/bclozel -PhH
+   * check: http://localhost:8080/actuator/metrics/github.ratelimit.remaining
+   */
   private static class MetricsInterceptor implements ClientHttpRequestInterceptor {
 
     private final AtomicInteger gauge;
