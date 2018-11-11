@@ -60,6 +60,14 @@
       <version>${spring.boot.version}</version>
     </dependency>
 
+    <!-- Spring Boot: Actuator -->
+    <!-- Link App: http://localhost:8080/actuator -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <version>${spring.boot.version}</version>
+    </dependency>
+
 		<!-- Spring Boot: Configuration -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
