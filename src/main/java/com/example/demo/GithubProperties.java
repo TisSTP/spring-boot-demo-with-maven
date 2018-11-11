@@ -14,7 +14,7 @@ import org.springframework.validation.annotation.Validated;
 public class GithubProperties {
 
   /**
-   * Github API token ("user:sampleToken")
+   * Github private access token "user:token"
    */
   @Pattern(regexp = "\\w+:\\w+")
   private String token;

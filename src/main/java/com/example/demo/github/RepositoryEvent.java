@@ -13,7 +13,7 @@ public class RepositoryEvent {
 
   private final Type type;
 
-  private final OffsetDateTime creationTiime;
+  private final OffsetDateTime creationTime;
 
   private final Actor actor;
 
@@ -21,12 +21,11 @@ public class RepositoryEvent {
 
   @JsonCreator
   public RepositoryEvent(@JsonProperty("event") String type,
-      @JsonProperty("created_at") OffsetDateTime creationTiime,
+      @JsonProperty("created_at") OffsetDateTime creationTime,
       @JsonProperty("actor") Actor actor,
       @JsonProperty("issue") Issue issue) {
-//    this.type = Type.valueFrom(type);
-    this.type = null;
-    this.creationTiime = creationTiime;
+    this.type = Type.valueFrom(type);
+    this.creationTime = creationTime;
     this.actor = actor;
     this.issue = issue;
   }
@@ -35,8 +34,8 @@ public class RepositoryEvent {
     return type;
   }
 
-  public OffsetDateTime getCreationTiime() {
-    return creationTiime;
+  public OffsetDateTime getCreationTime() {
+    return creationTime;
   }
 
   public Actor getActor() {
@@ -49,6 +48,44 @@ public class RepositoryEvent {
 
   public enum Type {
 
+    CLOSED("closed"),
+    REOPENED("reopened"),
+    SUBSCRIBED("subscribed"),
+    UNSUBSCRIBED("unsubscribed"),
+    MERGED("merged"),
+    REFERENCED("referenced"),
+    MENTIONED("mentioned"),
+    ASSIGNED("assigned"),
+    UNASSIGNED("unassigned"),
+    LABELED("labeled"),
+    UNLABELED("unlabeled"),
+    MILESTONED("milestoned"),
+    DEMILESTONED("demilestoned"),
+    RENAMED("renamed"),
+    LOCKED("locked"),
+    UNLOCKED("unlocked"),
+    HEAD_REF_DELETED("head_ref_deleted"),
+    HEAD_REF_RESTORED("head_ref_restored"),
+    CONVERTED_NOTE_TO_ISSUE("converted_note_to_issue"),
+    MOVED_COLUMNS_IN_PROJECT("moved_columns_in_project"),
+    COMMENT_DELETED("comment_deleted"),
+    REVIEW_REQUESTED("review_requested");
+
+    private String type;
+
+    Type(String type) {
+      this.type = type;
+    }
+
+    static Type valueFrom(String type) {
+      for (Type value : values()) {
+        if (type.equals(value.type)) {
+          return value;
+        }
+      }
+      throw new IllegalArgumentException(
+          "'" + type + "' is not a valid event type");
+    }
   }
 
 }
